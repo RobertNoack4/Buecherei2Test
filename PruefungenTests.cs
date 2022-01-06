@@ -12,9 +12,7 @@ namespace Buecherei.UnitTests
         [Test]
         public void EingabeZahlPruefung_ZahlWirdEingegeben_ReturnTrue()
         {
-            var result = Pruefungen.EingabeZahlPruefung("2");
-
-            Assert.That(result, Is.True);
+            Assert.That(Pruefungen.EingabeZahlPruefung("2"), Is.True);
         }
 
         [Test]
@@ -24,35 +22,43 @@ namespace Buecherei.UnitTests
         [TestCase(null)]
         public void EingabeZahlPruefung_KeineZahlWirdEingegeben_ReturnFalse(string eingabe)
         {
-            var result = Pruefungen.EingabeZahlPruefung(eingabe);
-
-            Assert.That(result, Is.False);
+            Assert.That(Pruefungen.EingabeZahlPruefung(eingabe), Is.False);
         }
 
         [Test]
         public void EingabeZahlIstOption_EingabeKleinerAls1_ReturnFalse()
         {
-            var result = Pruefungen.EingabeZahlIstOption(0, 3);
-
-            Assert.That(result, Is.False);
+            Assert.That(Pruefungen.EingabeZahlIstOption(0, 3), Is.False);
         }
 
         [Test]
         public void EingabeZahlIstOption_EingabeGroeßerAlsMoeglichkeiten_ReturnFalse()
         {
-            var result = Pruefungen.EingabeZahlIstOption(4, 3);
-
-            Assert.That(result, Is.False);
+            Assert.That(Pruefungen.EingabeZahlIstOption(4, 3), Is.False);
         }
 
         [Test]
         public void EingabeZahlIstOption_EingabekleinerAlsMoeglichkeitenUndGroeßerAlsNull_ReturnTrue()
         {
-            var result = Pruefungen.EingabeZahlIstOption(1, 3);
-
-            Assert.That(result, Is.True);
+            Assert.That(Pruefungen.EingabeZahlIstOption(1, 3), Is.True);
         }
 
+        [Test]
+        public void JaNeinTest_InputYkeyPress_ReturnTrue()
+        {
+            Assert.That(Pruefungen.JaNeinTest(ConsoleKey.Y), Is.True);
+        }
 
+        [Test]
+        public void JaNeinTest_InputNkeyPress_ReturnTrue()
+        {
+            Assert.That(Pruefungen.JaNeinTest(ConsoleKey.N), Is.False);
+        }
+
+        [Test]
+        public void JaNeinTest_InputOtherkeyPress_ReturnTrue()
+        {
+            Assert.That(() => Pruefungen.JaNeinTest(ConsoleKey.O), Throws.ArgumentException);
+        }
     }
 }
